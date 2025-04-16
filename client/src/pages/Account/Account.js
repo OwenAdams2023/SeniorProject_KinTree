@@ -1,17 +1,15 @@
 import React from 'react';
 import * as styles from './styles';
-import NavBar from '../../components/NavBar/NavBar';
-import CreateAccount from '../CreateAccount/CreateAccount';
-import './Account.css';
+import { Link, useParams } from 'react-router-dom';
 
 function Account() {
+    // takes id from url path
+    const { id } = useParams();
+    // then retrieve user info/logged in user's permission levels using API
     return (
-        <>
-            <NavBar />
-            <div>
-                <CreateAccount />
-            </div>
-        </>
+        <div style={styles.DefaultStyle}>
+            <Link to="/tree" >Back to Tree</Link>
+        </div>
     )
 }
 

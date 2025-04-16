@@ -2,12 +2,13 @@
 const express = require('express');
 const knex = require('knex');
 const dotenv = require('dotenv');
-const cors = reqire('cors');
+const cors = require('cors');
 const knexConfig = require('./knexfile');
 const authRoutes = require('./routes/authRoutes');
-const treeMemberRoutes = reqire('./routes/treeMemberRoute');
-const relationshipRoutes = reqire('./routes/relationshipRoute');
-
+const treeMemberRoutes = require('./routes/treeMemberRoute');  // Fixed typo
+const relationshipRoutes = require('./routes/relationshipRoutes');  // Fixed typo
+const sharedTreeRoutes = require('./routes/sharedTreeRoutes');
+const backupRoutes = require('./routes/backupRoutes');
 dotenv.config();
 
 const app = express();
@@ -26,14 +27,16 @@ const db = knex({
 app.use(express.json());
 app.use(cors());
 
+app.use('/api/share-trees', sharedTreeRoutes)
 app.use('/api/family-members', treeMemberRoutes);
 app.use('/api/relationships', relationshipRoutes);
 app.use('/api/auth', authRoutes);
-
+app.use('/api/backup', backupRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
 
 // Example route -- follow this template for other routes
 

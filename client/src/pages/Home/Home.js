@@ -2,33 +2,19 @@ import React from 'react';
 import logo from '../../assets/kintreelogo-adobe.png';
 import { Link } from 'react-router-dom';
 import * as styles from './styles';
-import NavBar from '../../components/NavBar/NavBar';
+import { ReactComponent as CalendarIcon } from '../../assets/calendar.svg';
+import { ReactComponent as PlusIcon } from '../../assets/plus-sign.svg';
+import CreateEventPopup from '../../components/CreateEvent/CreateEvent';
+import CreateMemoryPopup from '../../components/CreateMemory/CreateMemory';
 
-//ToDo: Import tree and display it on the user's home page
+// TODO: need to implement auth check for this page (and others), redirect to login if not authenticated
 function Home() {
     return (
-        <>
-            <NavBar />
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <div className="Container">
-                    <p>
-                        Welcome to KinTree! This is the client side of the application. It's in progress.
-                    </p>
-                </div>
-                <a
-                    className="App-link"
-                    href="https://github.com/OwenAdams2023/SeniorProject_KinTree"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Github Repository
-                </a>
-                <Link to='/useractivitydash'>Family Events</Link>
-            </header>
-
-        </>
-        
+        <div style={styles.DefaultStyle}>
+            <Link to="/tree" >View Tree Page</Link>
+            <CreateEventPopup trigger={<CalendarIcon style={styles.CalendarButton} />} />
+            <CreateMemoryPopup trigger={<PlusIcon style={styles.PlusButton} />} />
+        </div>
     )
 }
 
